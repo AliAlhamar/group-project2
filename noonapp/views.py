@@ -7,7 +7,22 @@ from math import ceil
 def index (request):
     return render(request,"index.html")
 
-def contact (request):
+def contact(request):
+    if request.method=="POST":
+        name=request.POST.get("name")
+        email=request.POST.get("email")
+        desc=request.POST.get("desc")
+        pnumber=request.POST.get("pnumber")
+        myquery=Contact(name=name,email=email,desc=desc,phonenumber=pnumber)
+        myquery.save()
+        messages.info(request,"we will get back to you soon..")
+        
+        return render(request,"contact.html")
+    
+    def ___str___(self):
+        return self.name
+
+
     return render(request,"contact.html")
 
 def about (request):
@@ -19,8 +34,8 @@ def profile (request):
 def checkout (request):
     return render(request,"about.html")
 
-# def products (request):
-#     return render(request,"products.html")
+def Products (request):
+    return render(request,"Products.html")
 
 def handlerequest (request):
     return render(request,"about.html")
